@@ -1,0 +1,36 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class JDBCDemo {
+    public static void main(String[] args) {
+        // MySQL database URL, username, and password
+        String url = "jdbc:mysql://localhost:3306/employees"; // Update the database name
+        String username = "root"; // Your MySQL username
+        String password = "root"; // Your MySQL password
+
+        try {
+            // Load the MySQL JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establish the connection to the database
+            Connection con = DriverManager.getConnection(url, username, password);
+            System.out.println("Connection Established Successfully!");
+
+            // Close the connection after use
+            con.close();
+        } catch (ClassNotFoundException e) {
+            // Handle ClassNotFoundException if the JDBC driver is not found
+            System.out.println("JDBC Driver not found!");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // Handle SQLException for any SQL-related issues
+            System.out.println("SQL Error occurred:");
+            e.printStackTrace();
+        } catch (Exception e) {
+            // Catch any other unexpected exceptions
+            System.out.println("Unexpected error occurred:");
+            e.printStackTrace();
+        }
+    }
+}

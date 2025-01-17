@@ -1,0 +1,25 @@
+package demo1;
+
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.File;
+
+public class F2 {
+
+	public static void main(String[] args) {
+		try {
+			File obj = new File("myfile2.txt");
+			Scanner reader = new Scanner(obj);
+			while(reader.hasNextLine()) {
+				String data = reader.nextLine();
+				System.out.println(data);
+			}
+		}
+		catch(FileNotFoundException e) {
+			System.out.println("file has an error");
+			e.printStackTrace();
+		}
+
+	}
+
+}

@@ -1,0 +1,37 @@
+package jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class CreateOperation {
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        String url = "jdbc:mysql://localhost:3306/employees";
+        String username = "root";
+        String password = "root";
+        
+        // Load the MySQL JDBC driver
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        
+        // Connect to the database
+        Connection con = DriverManager.getConnection(url, username, password);
+        
+        // Create an SQL query to insert data
+        String query = "INSERT INTO employees (name, age) VALUES (?, ?)";
+        
+        // Create a PreparedStatement
+        PreparedStatement pst = con.prepareStatement(query);
+        pst.setString(1, "manoj");
+        pst.setInt(2, 25);
+        
+        // Execute the update
+        int rowsAffected = pst.executeUpdate();
+        System.out.println(rowsAffected + " row(s) inserted.");
+        
+        // Close the resources
+        pst.close();
+        con.close();
+    }
+}

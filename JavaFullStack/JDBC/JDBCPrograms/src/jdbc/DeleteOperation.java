@@ -1,0 +1,33 @@
+package jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class DeleteOperation {
+
+	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		String url = "jdbc:mysql://localhost:3306/employees";
+		String username = "root";
+		String password = "root";
+		
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		
+		Connection con = DriverManager.getConnection(url,username,password);
+		
+		String query = "delete from employees where name = ?";
+		
+		PreparedStatement pst = con.prepareStatement(query);
+		
+		pst.setString(1, "John doe");
+		
+		int rowsEffected = pst.executeUpdate();
+		System.out.println(rowsEffected+"row(s) Effected");
+		
+		pst.close();
+		con.close();
+
+	}
+
+}

@@ -1,0 +1,13 @@
+package sruthi;
+
+
+
+public class JDBCDemo {
+
+	public static void main(String[] args) throws ClassNotFoundException {
+		//step1: register the driver\
+		Class.forName("com.mysql.cj.jdbc.Driver");
+
+	}
+
+}
